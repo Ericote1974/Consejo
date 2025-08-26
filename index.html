@@ -1,151 +1,78 @@
-import { motion } from "framer-motion";
-import { useState } from "react";
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Infografía ISO 9001 – Edyen</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(#ffffff, #f8fafc);
+      color: #333;
+    }
+    header {
+      text-align: center;
+      padding: 2rem;
+    }
+    header img {
+      max-height: 80px;
+      margin-bottom: 1rem;
+    }
+    h1 {
+      color: #0072CE; /* Azul Edyen */
+    }
+    section {
+      max-width: 1000px;
+      margin: 2rem auto;
+      padding: 1rem;
+    }
+    h2 {
+      color: #0072CE;
+      margin-bottom: 1rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      padding: 1rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+    }
+    ul {
+      padding-left: 1.2rem;
+    }
+    footer {
+      text-align: center;
+      font-size: 0.8rem;
+      color: #666;
+      padding: 2rem 0;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <img src="Logo Edyen.png" alt="Logo Edyen">
+    <h1>ISO 9001: Un sistema vivo de calidad</h1>
+    <p>La certificación valida que tu Sistema de Gestión de la Calidad funciona: documenta, opera, mide y mejora.  
+    Los procesos certificados son solo el inicio.</p>
+  </header>
 
-export default function ISO9001Infographic() {
-  const brand = {
-    primary: "#0072CE", // Azul Edyen
-    accent: "#37C871"   // Verde acento
-  };
-
-  const [logoSrc, setLogoSrc] = useState("/LogoEdyen.png");
-  const fallbackDataUri = "data:image/svg+xml;utf8," + encodeURIComponent(`<?xml version='1.0' encoding='UTF-8'?><svg xmlns='http://www.w3.org/2000/svg' width='200' height='60' viewBox='0 0 200 60'><rect x='0' y='0' width='200' height='60' rx='10' fill='#ffffff'/><rect x='16' y='12' width='40' height='36' rx='6' fill='#0072CE'/><rect x='62' y='12' width='10' height='36' rx='3' fill='#37C871'/></svg>`);
-
-  const logoUrl = logoSrc;
-
-  const steps = [
-    { title: "Identifica procesos clave", desc: "Define y documenta una muestra representativa (ventas, operaciones, RH, compras, etc.)." },
-    { title: "Estandariza y opera", desc: "Crea procedimientos, formatos y controles. Se usan en el día a día, no solo en la auditoría." },
-    { title: "Mide y mejora", desc: "Indicadores, hallazgos y acciones correctivas/preventivas para mejora continua." },
-    { title: "Amplía el alcance", desc: "Se agregan nuevos procesos, se actualizan los existentes y se retiran los obsoletos." }
-  ];
-
-  const loop = [
-    { k: "Planear", d: "Definir riesgos, objetivos, cambios de proceso." },
-    { k: "Hacer", d: "Operar conforme a procedimientos y evidencias." },
-    { k: "Verificar", d: "Medir indicadores, auditar, analizar fallas." },
-    { k: "Actuar", d: "Corregir, prevenir y estandarizar mejoras." }
-  ];
-
-  const truths = [
-    { title: "Sistema, no lista fija", desc: "ISO 9001 certifica tu sistema de gestión, no un catálogo estático de procesos." },
-    { title: "Uso real", desc: "Lo documentado se aplica. Proceso que no se usa = incumplimiento." },
-    { title: "Evolución", desc: "El sistema crece con el negocio: se suben y actualizan procesos constantemente." },
-    { title: "Confianza", desc: "Clientes y auditorías confirman que operas con control y mejora continua." }
-  ];
-
-  const sections = [
-    { area: "Comercial", procesos: [
-      "PE-C-VTS-001 Procedimiento de ventas",
-      "PE-C-VTS-002 Procedimiento de comisiones",
-      "PE-C-VTS-002 Procedimiento cliente fijo"
-    ]},
-    { area: "Comunicación", procesos: [
-      "PE-C-MKT-001 Procedimiento MKT",
-      "PE-C-MKT-002 Procedimiento Comunicación Corporativa",
-      "PE-C-MKT-003 Procedimiento para la Organización de eventos",
-      "PE-C-MKT-004 Procedimiento para el uso de Presentaciones Autorizadas para Unidades de Negocio"
-    ]},
-    { area: "Posventa", procesos: [
-      "PE-C-RLP-001 Procedimiento relaciones públicas"
-    ]},
-    { area: "Operaciones y logística", procesos: [
-      "PE-O-OYL-001 Procedimiento de administración de flota",
-      "PE-O-OYL-002 Procedimiento de logística",
-      "PE-O-OYL-003 Procedimiento centro de monitoreo",
-      "PE-O-OYL-004 Procedimiento de Operaciones por Servicio"
-    ]},
-    { area: "Control y Gestión", procesos: [
-      "PE-O-CYG-001 Procedimiento control de combustible",
-      "PE-O-CYG-002 Procedimiento de Control de Asistencia y Puntualidad"
-    ]},
-    { area: "Mantenimiento y soporte", procesos: [
-      "PE-O-MYS-001 Procedimiento de mantenimiento",
-      "PE-O-MYS-002 Procedimiento de compras de mantenimiento",
-      "PE-O-MYS-003 Procedimiento de gestión de siniestros"
-    ]},
-    { area: "Gente y cultura", procesos: [
-      "PE-A-GYC-001 Procedimiento de capacitación",
-      "PE-A-GYC-002 Administración de Personal",
-      "PE-A-GYC-003 Procedimiento de solicitud de vacaciones, permisos, incapacidades o licencias",
-      "PE-A-GYC-004 Procedimiento de Gestión de Desempeño",
-      "PE-A-GYC-005 Procedimiento de Salud Ocupacional",
-      "PE-A-GYC-006 Procedimiento de Reclutamiento de Personal"
-    ]},
-    { area: "Tecnologías de la información", procesos: [
-      "PE-A-TI-001 Procedimiento de soporte"
-    ]}
-  ];
-
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-white to-slate-50 text-slate-800">
-      <header className="mx-auto max-w-6xl px-4 pt-10 pb-4 flex flex-col items-center">
-        {logoUrl && (
-          <img src={logoUrl} alt="Logo Edyen" className="h-20 w-auto mb-4" onError={() => setLogoSrc(fallbackDataUri)} />
-        )}
-        <motion.div initial={{ opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="text-center">
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight" style={{ color: brand.primary }}>ISO 9001: Un sistema vivo de calidad</h1>
-          <p className="mt-3 text-slate-700 md:text-lg">La certificación valida que tu Sistema de Gestión de la Calidad funciona: documenta, opera, mide y mejora. Los procesos certificados son solo el inicio.</p>
-        </motion.div>
-      </header>
-
-      {/* Pasos */}
-      <section className="mx-auto max-w-6xl px-4 mt-10">
-        <h2 className="text-xl md:text-2xl font-semibold mb-4" style={{ color: brand.primary }}>Cómo funciona en la práctica</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {steps.map((s, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.06 }} viewport={{ once: true }} className="rounded-2xl bg-white border shadow-sm p-5">
-              <h3 className="font-semibold mb-2" style={{ color: brand.primary }}>{s.title}</h3>
-              <p className="text-sm text-slate-600">{s.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Ciclo PDCA */}
-      <section className="mx-auto max-w-6xl px-4 mt-12">
-        <h2 className="text-xl md:text-2xl font-semibold mb-4" style={{ color: brand.primary }}>Ciclo de mejora continua (PDCA)</h2>
-        <div className="grid md:grid-cols-4 gap-4">
-          {loop.map((l, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.05 }} viewport={{ once: true }} className="rounded-2xl bg-white border shadow-sm p-5">
-              <div className="text-sm text-slate-500">Paso {i + 1}</div>
-              <h3 className="text-lg font-semibold" style={{ color: brand.primary }}>{l.k}</h3>
-              <p className="text-sm text-slate-600">{l.d}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Procedimientos */}
-      <section className="mx-auto max-w-6xl px-4 mt-12">
-        <h2 className="text-xl md:text-2xl font-semibold mb-4" style={{ color: brand.primary }}>Procedimientos del SGC (versión en curso)</h2>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {sections.map((sec, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.04 }} viewport={{ once: true }} className="rounded-2xl bg-white border shadow-sm p-6">
-              <h3 className="text-lg font-semibold mb-3" style={{ color: brand.primary }}>{sec.area}</h3>
-              <ul className="list-disc list-inside space-y-1 text-sm text-slate-700">
-                {sec.procesos.map((p, j) => (
-                  <li key={j}>{p}</li>
-                ))}
-              </ul>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      {/* Verdades clave */}
-      <section className="mx-auto max-w-6xl px-4 mt-12">
-        <h2 className="text-xl md:text-2xl font-semibold mb-4" style={{ color: brand.primary }}>Verdades clave de ISO 9001</h2>
-        <div className="grid md:grid-cols-2 gap-4">
-          {truths.map((t, i) => (
-            <motion.div key={i} initial={{ opacity: 0, y: 12 }} whileInView={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: i * 0.06 }} viewport={{ once: true }} className="rounded-2xl bg-white border shadow-sm p-5">
-              <h3 className="font-semibold mb-2" style={{ color: brand.primary }}>{t.title}</h3>
-              <p className="text-sm text-slate-600">{t.desc}</p>
-            </motion.div>
-          ))}
-        </div>
-      </section>
-
-      <footer className="text-center text-xs text-slate-500 py-10">© {new Date().getFullYear()} Edyen • Sistema de Gestión de la Calidad ISO 9001</footer>
+  <section>
+    <h2>Cómo funciona en la práctica</h2>
+    <div class="grid">
+      <div class="card"><h3>Identifica procesos clave</h3><p>Define y documenta una muestra representativa (ventas, operaciones, RH, compras, etc.).</p></div>
+      <div class="card"><h3>Estandariza y opera</h3><p>Crea procedimientos, formatos y controles. Se usan en el día a día, no solo en la auditoría.</p></div>
+      <div class="card"><h3>Mide y mejora</h3><p>Indicadores, hallazgos y acciones correctivas/preventivas para mejora continua.</p></div>
+      <div class="card"><h3>Amplía el alcance</h3><p>Se agregan nuevos procesos, se actualizan los existentes y se retiran los obsoletos.</p></div>
     </div>
-  );
-}
+  </section>
